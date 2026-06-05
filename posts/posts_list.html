@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Все посты</title>
+</head>
+<body>
+    <h1>Посты</h1>
+    
+    <!-- Список категорий отдельно -->
+    <h2>Категории</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.title }}</li>
+        {% empty %}
+            <li>Категорий пока нет</li>
+        {% endfor %}
+    </ul>
+    
+    <hr>
+    
+    <!-- Список постов -->
+    <h2>Посты</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.pk %}">
+                    <strong>{{ post.title }}</strong>
+                </a>
+                <br>
+                <small>Категория: {{ post.category.title }}</small>
+            </li>
+        {% empty %}
+            <li>Постов пока нет</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
